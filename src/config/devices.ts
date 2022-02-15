@@ -1,0 +1,7 @@
+const AC_PREFIX = '2C3AE84'
+
+export const Devices = {
+  OFFICE_AC: AC_PREFIX + '70036',
+  BEDROOM_AC: AC_PREFIX + '87CC0',
+  LIVING_ROOM_AC: AC_PREFIX + '87CD1',
+}
