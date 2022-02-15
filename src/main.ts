@@ -29,14 +29,16 @@ const createPayload = (action: string, deviceId: string) => {
 
 async function main() {
   const action = process.argv[2]?.trim()
-  console.log('action:', action)
+  const deviceKey = process.argv[3]?.trim()
+
+  console.log('input:', {action, deviceKey})
 
   const client = connect(BROKER_URI, {
     username: BROKER_USERNAME,
     password: BROKER_PASSWORD,
   })
 
-  const deviceId = Devices.BEDROOM_AC
+  const deviceId = Devices[deviceKey] ?? Devices.BEDROOM_AC
   const topic = createTopic(deviceId)
   let payload = createPayload(action, deviceId)
 
