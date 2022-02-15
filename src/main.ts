@@ -30,7 +30,6 @@ const createPayload = (action: string, deviceId: string) => {
 async function main() {
   const action = process.argv[2]?.trim()
   const deviceKey = process.argv[3]?.trim()
-
   console.log('input:', {action, deviceKey})
 
   const client = connect(BROKER_URI, {
@@ -40,14 +39,11 @@ async function main() {
 
   const deviceId = Devices[deviceKey] ?? Devices.BEDROOM_AC
   const topic = createTopic(deviceId)
-  let payload = createPayload(action, deviceId)
-
+  const payload = createPayload(action, deviceId)
   console.log('sending:', {topic, payload})
 
   if (payload) await client.publish(topic, payload)
-
-  console.log('done!')
-
+  console.log('complete')
   process.exit()
 }
 
