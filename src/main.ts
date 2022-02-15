@@ -7,6 +7,7 @@ import {
   ACState,
   createACPayload,
   createTopic,
+  updateTemperature,
 } from './payload/air-conditioner'
 
 const BROKER_URI = 'mqtt://iotservices.obotrons.dtgsiam.com:1883'
@@ -24,6 +25,9 @@ const createPayload = (action: string, deviceId: string) => {
       return create(ACAction.SET_POWER, ACState.POWER_OFF)
     case 'max':
       return create(ACAction.SET_FAN_SPEED, ACState.FAN_SPEED_5)
+    case 'set':
+      const temperature = parseInt(process.argv[4] ?? '25')
+      return updateTemperature(deviceId, temperature)
   }
 }
 
